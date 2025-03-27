@@ -49,19 +49,73 @@
   <script>
     const libros = [
       {
-        titulo: "Laberintos Para Adultos",
-        subtitulo: "155 Laberintos Con Soluciones",
+        titulo: "Laberintos Para Adultos: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | Libro ... | Para vista cansada (Spanish Edition)",
         fecha: "10 de octubre de 2022",
         precio: "US$5.99",
-        enlace: "https://www.amazon.com/-/es/Laberintos-Para-Adultos-Soluciones-Pasatiempos/dp/B0BHY4Z6WV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.Wu68_94mB4R94dIYBYm_u54A-LIn8AMmdaVU4NA-6ic1VcS0n2U7Y-UnJ9HKseXS8OKtBeEvqL1iLGPuaeByc3jQ6OPbAuVlv5TgKd3W9gshr1zupz34cR3LhtErtf51D5L9UZUzhKlGuZsrwUZ6Ie61FWNvvdXLn7FbH7Gw2T4NkxntMtmX7z9OBQd4UeKw-sYr1Kkxp_GjkY2d4T0ECUhyktlP6x3M5uZULpB6M8Q.feaJWQrd67ENhUkEsrl3gqrytWm9y6Ao-Tc7Z9vOm98&dib_tag=se&qid=1743066440&refinements=p_27%3ACon+Gafas+Publishing&s=books&sr=1-1&text=Con+Gafas+Publishing"
+        enlace: "https://www.amazon.com/-/es/Laberintos-Para-Adultos-Soluciones-Pasatiempos/dp/B0BHY4Z6WV"
       },
       {
-        titulo: "Laberintos Para Adultos Numero 5",
-        subtitulo: "155 Laberintos Con Soluciones",
+        titulo: "Laberintos Para Adultos Numero 5: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | Libro Actividades para Adultos | Para vista cansada",
+        fecha: "29 de abril de 2023",
+        precio: "US$4.99",
+        enlace: "https://www.amazon.com/-/es/Laberintos-Para-Adultos-Numero-Pasatiempos/dp/B0C2SMM6N1"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 2: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
+        fecha: "26 de abril de 2023",
+        precio: "US$4.99",
+        enlace: "https://www.amazon.com/-/es/Gafas-Publishing/dp/B0C2S47LK2"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 6: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
         fecha: "29 de abril de 2023",
         precio: "US$4.99"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 1: 75 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | Libro ... | Para vista cansada (Spanish Edition)",
+        fecha: "5 de mayo de 2023",
+        precio: "US$5.00"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 4: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
+        fecha: "28 de abril de 2023",
+        precio: "US$4.99"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 9: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
+        fecha: "1 de mayo de 2023",
+        precio: "US$4.99"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 3: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
+        fecha: "26 de abril de 2023",
+        precio: "US$4.99"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 8: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
+        fecha: "1 de mayo de 2023",
+        precio: "US$4.99"
+      },
+      {
+        titulo: "Laberintos Para Adultos Numero 7: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
+        fecha: "30 de abril de 2023",
+        precio: "US$4.99"
+      },
+      {
+        titulo: "Juegos de Laberintos: 101 laberintos para resolver y entretenerse | Con Solucion (Spanish Edition)",
+        fecha: "7 de octubre de 2022",
+        precio: "US$7.54"
+      },
+      {
+        titulo: "Libro de Juegos de Laberintos: 201 pasatiempos con soluciones (Spanish Edition)",
+        fecha: "2 de octubre de 2022",
+        precio: "US$9.12"
+      },
+      {
+        titulo: "Juegos de Laberintos: 301 laberintos con soluciones (Spanish Edition)",
+        fecha: "5 de octubre de 2022",
+        precio: "US$12.36"
       }
-      // Puedes seguir añadiendo más libros aquí como antes
     ];
 
     function mostrarEditorial() {
@@ -82,11 +136,7 @@
       libros.forEach(libro => {
         contenedor.innerHTML += `
           <div class="libro">
-            <strong>${
-              libro.enlace
-                ? `<a href="${libro.enlace}" target="_blank">${libro.titulo}</a>`
-                : libro.titulo
-            }</strong>: ${libro.subtitulo}<br>
+            <strong>${libro.enlace ? `<a href="${libro.enlace}" target="_blank">${libro.titulo}</a>` : libro.titulo}</strong><br>
             📅 Publicado el: ${libro.fecha}<br>
             💰 Precio: ${libro.precio}
           </div>
