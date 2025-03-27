@@ -1,34 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Con Gafas Publishing</title>
   <style>
-    :root {
-      --primary-color: #0066cc;
-      --bg-color: #fdfdfd;
-      --section-bg: #f0f0f0;
-      --text-color: #444;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 1em;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background-color: #fdfdfd;
+      color: #444;
     }
-
     h1 {
       text-align: center;
       margin-bottom: 1em;
     }
-
     .botones {
       display: flex;
       flex-wrap: wrap;
@@ -36,52 +23,45 @@
       gap: 1em;
       margin-bottom: 2em;
     }
-
     button {
       padding: 0.75em 1.5em;
       font-size: 1em;
       border: none;
       border-radius: 5px;
-      background-color: var(--primary-color);
+      background-color: #0066cc;
       color: white;
       cursor: pointer;
-      transition: background-color 0.2s ease;
     }
-
     button:hover {
       background-color: #004c99;
     }
-
     #info, #libros {
+      display: none;
       max-width: 800px;
       margin: 0 auto 2em;
       padding: 1em;
-      background-color: var(--section-bg);
+      background-color: #f0f0f0;
       border-radius: 10px;
     }
-
     .libro {
       margin-bottom: 1em;
       padding-bottom: 0.5em;
       border-bottom: 1px solid #ccc;
     }
-
     a {
-      color: var(--primary-color);
+      color: #0066cc;
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
+    canvas {
+      display: block;
+      margin: 0 auto 2em;
+    }
     @media (max-width: 600px) {
       button {
         width: 100%;
-      }
-
-      .libro {
-        font-size: 0.95em;
       }
     }
   </style>
@@ -93,9 +73,12 @@
     <button onclick="mostrarLibros()">Ver nuestros libros</button>
   </div>
 
+  <canvas id="fondo3D"></canvas>
+
   <div id="info"></div>
   <div id="libros"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155/build/three.min.js"></script>
   <script>
     const libros = [
       {
@@ -115,62 +98,62 @@
         fecha: "26 de abril de 2023",
         precio: "US$4.99",
         enlace: "https://www.amazon.com/-/es/Gafas-Publishing/dp/B0C2S47LK2"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 6: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
-        fecha: "29 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 1: 75 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | Libro ... | Para vista cansada (Spanish Edition)",
-        fecha: "5 de mayo de 2023",
-        precio: "US$5.00"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 4: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
-        fecha: "28 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 9: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
-        fecha: "1 de mayo de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 3: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
-        fecha: "26 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 8: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
-        fecha: "1 de mayo de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 7: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
-        fecha: "30 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Juegos de Laberintos: 101 laberintos para resolver y entretenerse | Con Solucion (Spanish Edition)",
-        fecha: "7 de octubre de 2022",
-        precio: "US$7.54"
-      },
-      {
-        titulo: "Libro de Juegos de Laberintos: 201 pasatiempos con soluciones (Spanish Edition)",
-        fecha: "2 de octubre de 2022",
-        precio: "US$9.12"
-      },
-      {
-        titulo: "Juegos de Laberintos: 301 laberintos con soluciones (Spanish Edition)",
-        fecha: "5 de octubre de 2022",
-        precio: "US$12.36"
       }
+      // Puedes añadir más libros si lo deseas
     ];
 
+    const infoDiv = document.getElementById('info');
+    const librosDiv = document.getElementById('libros');
+    const canvas = document.getElementById('fondo3D');
+
+    // THREE.js escena básica
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, 400);
+    let puzzlePieces = [];
+
+    function crearAnimacion() {
+      // Limpiar escena
+      while (scene.children.length > 0) {
+        scene.remove(scene.children[0]);
+      }
+
+      puzzlePieces = [];
+      const geometry = new THREE.BoxGeometry(0.8, 0.8, 0.1);
+      const material = new THREE.MeshNormalMaterial();
+
+      for (let i = 0; i < 20; i++) {
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = (Math.random() - 0.5) * 6;
+        mesh.position.y = (Math.random() - 0.5) * 4;
+        mesh.position.z = (Math.random() - 0.5) * 4;
+        mesh.rotationSpeed = {
+          x: Math.random() * 0.05,
+          y: Math.random() * 0.05
+        };
+        puzzlePieces.push(mesh);
+        scene.add(mesh);
+      }
+
+      camera.position.z = 5;
+    }
+
+    function animar() {
+      requestAnimationFrame(animar);
+      puzzlePieces.forEach(piece => {
+        piece.rotation.x += piece.rotationSpeed.x;
+        piece.rotation.y += piece.rotationSpeed.y;
+      });
+      renderer.render(scene, camera);
+    }
+
+    animar();
+
     function mostrarEditorial() {
-      const info = document.getElementById('info');
-      info.innerHTML = `
+      infoDiv.style.display = 'block';
+      librosDiv.style.display = 'none';
+      infoDiv.innerHTML = `
         <h2>¿Qué hacemos? 🧠✨</h2>
         <p>🎯 Creamos pasatiempos que estimulan la mente y relajan el alma.</p>
         <p>📘 Publicamos libros con laberintos diseñados para personas adultas.</p>
@@ -178,13 +161,15 @@
         <p>🇪🇸 Libros en español, hechos con cariño por <strong>Con Gafas Publishing</strong>.</p>
         <p>📦 Disponibles en Amazon con envío a España.</p>
       `;
+      crearAnimacion();
     }
 
     function mostrarLibros() {
-      const contenedor = document.getElementById('libros');
-      contenedor.innerHTML = "<h2>Nuestros libros 📚</h2>";
+      infoDiv.style.display = 'none';
+      librosDiv.style.display = 'block';
+      librosDiv.innerHTML = "<h2>Nuestros libros 📚</h2>";
       libros.forEach(libro => {
-        contenedor.innerHTML += `
+        librosDiv.innerHTML += `
           <div class="libro">
             <strong>${libro.enlace ? `<a href="${libro.enlace}" target="_blank">${libro.titulo}</a>` : libro.titulo}</strong><br>
             📅 Publicado el: ${libro.fecha}<br>
@@ -192,7 +177,14 @@
           </div>
         `;
       });
+      crearAnimacion();
     }
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, 400);
+      camera.aspect = window.innerWidth / 400;
+      camera.updateProjectionMatrix();
+    });
   </script>
 </body>
 </html>
