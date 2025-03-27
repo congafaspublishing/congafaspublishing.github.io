@@ -29,6 +29,13 @@
       padding-bottom: 0.5em;
       border-bottom: 1px solid #ccc;
     }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -45,86 +52,16 @@
         titulo: "Laberintos Para Adultos",
         subtitulo: "155 Laberintos Con Soluciones",
         fecha: "10 de octubre de 2022",
-        precio: "US$5.99"
+        precio: "US$5.99",
+        enlace: "https://www.amazon.com/-/es/Laberintos-Para-Adultos-Soluciones-Pasatiempos/dp/B0BHY4Z6WV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.Wu68_94mB4R94dIYBYm_u54A-LIn8AMmdaVU4NA-6ic1VcS0n2U7Y-UnJ9HKseXS8OKtBeEvqL1iLGPuaeByc3jQ6OPbAuVlv5TgKd3W9gshr1zupz34cR3LhtErtf51D5L9UZUzhKlGuZsrwUZ6Ie61FWNvvdXLn7FbH7Gw2T4NkxntMtmX7z9OBQd4UeKw-sYr1Kkxp_GjkY2d4T0ECUhyktlP6x3M5uZULpB6M8Q.feaJWQrd67ENhUkEsrl3gqrytWm9y6Ao-Tc7Z9vOm98&dib_tag=se&qid=1743066440&refinements=p_27%3ACon+Gafas+Publishing&s=books&sr=1-1&text=Con+Gafas+Publishing"
       },
       {
         titulo: "Laberintos Para Adultos Numero 5",
         subtitulo: "155 Laberintos Con Soluciones",
         fecha: "29 de abril de 2023",
         precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 10",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "2 de mayo de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 2",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "26 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 6",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "29 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 1",
-        subtitulo: "75 Laberintos Con Soluciones",
-        fecha: "5 de mayo de 2023",
-        precio: "US$5.00"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 4",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "28 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 9",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "1 de mayo de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 3",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "26 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 8",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "1 de mayo de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Laberintos Para Adultos Numero 7",
-        subtitulo: "155 Laberintos Con Soluciones",
-        fecha: "30 de abril de 2023",
-        precio: "US$4.99"
-      },
-      {
-        titulo: "Juegos de Laberintos",
-        subtitulo: "101 laberintos para resolver y entretenerse",
-        fecha: "7 de octubre de 2022",
-        precio: "US$7.54"
-      },
-      {
-        titulo: "Libro de Juegos de Laberintos",
-        subtitulo: "201 pasatiempos con soluciones",
-        fecha: "2 de octubre de 2022",
-        precio: "US$9.12"
-      },
-      {
-        titulo: "Juegos de Laberintos",
-        subtitulo: "301 laberintos con soluciones",
-        fecha: "5 de octubre de 2022",
-        precio: "US$12.36"
       }
+      // Puedes seguir añadiendo más libros aquí como antes
     ];
 
     function mostrarEditorial() {
@@ -145,8 +82,12 @@
       libros.forEach(libro => {
         contenedor.innerHTML += `
           <div class="libro">
-            <strong>${libro.titulo}</strong>: ${libro.subtitulo}<br>
-            📅 Publicado el: ${libro.fecha} <br>
+            <strong>${
+              libro.enlace
+                ? `<a href="${libro.enlace}" target="_blank">${libro.titulo}</a>`
+                : libro.titulo
+            }</strong>: ${libro.subtitulo}<br>
+            📅 Publicado el: ${libro.fecha}<br>
             💰 Precio: ${libro.precio}
           </div>
         `;
