@@ -103,9 +103,10 @@
         enlace: "https://www.amazon.com/-/es/Laberintos-Para-Adultos-Numero-Pasatiempos/dp/B0C2ST5ZC1/ref=sr_1_5?s=books&sr=1-5&text=Con+Gafas+Publishing"
       },
       {
-        titulo: "Laberintos Para Adultos Numero 1: 75 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | Libro ... | Para vista cansada (Spanish Edition)",
+        titulo: "Laberintos Para Adultos Numero 1: 75 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | Libro Actividades para Adultos | Para vista cansada",
         fecha: "5 de mayo de 2023",
-        precio: "US$5.00"
+        precio: "US$5.00",
+        detalles: "Tapa blanda – 5 mayo de 2023 · de Con Gafas Publishing (Autor)"
       },
       {
         titulo: "Laberintos Para Adultos Numero 4: 155 Laberintos Con Soluciones | Cuaderno de Laberintos para Adultos | Pasatiempos para Adultos Con Soluciones | ... | Para vista cansada (Spanish Edition)",
@@ -172,7 +173,7 @@
           <div class="libro">
             <strong>${libro.enlace ? `<a href="${libro.enlace}" target="_blank">${libro.titulo}</a>` : libro.titulo}</strong><br>
             📅 Publicado el: ${libro.fecha}<br>
-            💰 Precio: ${libro.precio}
+            💰 Precio: ${libro.precio}${libro.detalles ? `<br>ℹ️ ${libro.detalles}` : ''}
           </div>
         `;
       });
